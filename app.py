@@ -43,6 +43,8 @@ def getData():
 	lat2 = str(request.args.get('lat2'))
 	lng2 = str(request.args.get('lng2'))
 
+        q.put("map area between     lat1: " + lat1 + " lat2: " + lat2 + " lng1: " + lng1 + " lng2: " + lng2)
+	
 	print "received coordinates: [" + lat1 + ", " + lat2 + "], [" + lng1 + ", " + lng2 + "]"
 	
 	client = pyorient.OrientDB("localhost", 2424)
@@ -82,7 +84,7 @@ def getData():
 		output["features"].append(feature)
 
 	q.put('idle')
-
+	
 	return json.dumps(output)
 
 if __name__ == "__main__":
